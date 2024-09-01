@@ -24,6 +24,18 @@ services:
     container_name: python_api2
     networks:
       - backend
+  
+  python_gunicorn_api1:
+    build: ./python_gunicorn_api
+    container_name: python_gunicorn_api1
+    networks:
+      - backend
+
+  python_gunicorn_api2:
+    build: ./python_gunicorn_api
+    container_name: python_gunicorn_api2
+    networks:
+      - backend
 
   nginx:
     image: nginx:alpine
@@ -33,6 +45,7 @@ services:
     ports:
       - "8080:8080"
       - "8090:8090"
+      - "8100:8100"
     networks:
       - backend
 
