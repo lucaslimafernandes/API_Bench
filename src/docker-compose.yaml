@@ -13,6 +13,18 @@ services:
     networks:
       - backend
 
+  api_chi1:
+    build: ./go_api_chi
+    container_name: api_chi1
+    networks:
+      - backend
+
+  api_chi2:
+    build: ./go_api_chi
+    container_name: api_chi2
+    networks:
+      - backend
+
   python_api1:
     build: ./python_api
     container_name: python_api1
@@ -44,6 +56,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8080:8080"
+      - "8110:8110"
       - "8090:8090"
       - "8100:8100"
     networks:
