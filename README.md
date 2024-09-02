@@ -1,7 +1,7 @@
 # API_Bench
-A Simple Benchmark using Go, Python, Nginx and Docker.
+A Simple Benchmark using Go, Python, Nginx, and Docker.
 
-This test is a subject of study for the Go language and the use of Docker and Nginx. It was conducted in a local environment and serves as an initial demonstration, with further testing needed using different types of responses and monitoring CPU/memory load.
+This test is a study on the Go language and the use of Docker and Nginx. It was conducted in a local environment and serves as an initial demonstration, with further testing needed using different types of responses and monitoring CPU/memory load.
 
 
 ## Results
@@ -9,7 +9,7 @@ This test is a subject of study for the Go language and the use of Docker and Ng
 Based on the data provided, we can draw the following conclusions regarding the performance of different frameworks and configurations:
 
 1. **Overall Performance**
-Go (net/http) and Go + Chi demonstrate high performance, with a high number of requests per second (RPS) and fast response times. Python + Flask shows the poorest performance, with RPS 80% lower than Go and 93.22% request failures under heavy load. Python + Gunicorn + Flask significantly improves performance, approaching Go in high concurrency scenarios.
+Go (net/http) and Go + Chi demonstrate high performance, with a high number of requests per second (RPS) and fast response times. Python + Flask shows the poorest performance, with an RPS 80% lower than Go and 93.22% request failures under heavy load. Python + Gunicorn + Flask significantly improves performance, approaching Go in high concurrency scenarios.
 
 ![](analysis/imgs/time_taken.png)
 
@@ -42,8 +42,7 @@ Go leads in transfer rate, showing higher efficiency in data transmission. Pytho
 Go and Go + Chi have low and consistent percentiles, indicating quick responses. Python + Flask without Gunicorn has high percentiles, indicating variability and significant slowdowns under load. Python + Gunicorn improves this but still shows outliers compared to Go.
 
 **General Conclusions**
-Go is superior in terms of performance, scalability, and reliability, handling high concurrency well. Python + Flask without Gunicorn is not suitable for high loads, but the introduction of Gunicorn improves performance. Go is ideal for critical applications that require high performance, while Python + Flask + Gunicorn is more suitable for less demanding scenarios.
-These tests were conducted in a local environment and serve as an initial demonstration, with further testing needed using different types of responses and monitoring CPU/memory load.
+Go is superior in terms of performance, scalability, and reliability, handling high concurrency well. Python + Flask without Gunicorn is not suitable for high loads, but the introduction of Gunicorn improves performance. Go is ideal for critical applications that require high performance, while Python + Flask + Gunicorn is more suitable for less demanding scenarios. These tests were conducted in a local environment and serve as an initial demonstration, with further testing needed using different types of responses and monitoring CPU/memory load.
 
 
 ## Contributing
