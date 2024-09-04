@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install Flask gunicorn
+RUN pip install Flask gunicorn psycopg2_binary PyJWT Werkzeug
 
 EXPOSE 5000
 

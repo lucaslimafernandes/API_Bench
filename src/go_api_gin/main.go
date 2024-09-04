@@ -16,12 +16,14 @@ func init() {
 
 func main() {
 
+	gin.SetMode(gin.ReleaseMode)
+
 	router := gin.Default()
 
 	router.GET("/ping", controllers.Ping)
 
-	// router.POST("/auth/signup")
-	router.POST("/auth/login")
+	router.GET("/auth/login", controllers.Login)
 
 	router.Run(":3000")
+
 }

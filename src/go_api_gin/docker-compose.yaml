@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3'
 
 services:
 
@@ -21,30 +21,7 @@ services:
     networks:
       - backend
 
-  go_api1:
-    build: ./go_api
-    container_name: go_api
-    networks:
-      - backend
-
-  go_api2:
-    build: ./go_api
-    container_name: go_api
-    networks:
-      - backend
-
-  go_api_chi1:
-    build: ./go_api_chi
-    container_name: go_api_chi
-    networks:
-      - backend
-
-  go_api_ch2:
-    build: ./go_api_chi
-    container_name: go_api_ch2
-    networks:
-      - backend
-
+  
   go_gin1:
     build: .
     container_name: go_gin1
@@ -88,33 +65,10 @@ services:
     networks:
       - backend
 
-  python_api1:
-    build: ./python_api
-    container_name: python_api1
-    networks:
-      - backend
 
-  python_api2:
-    build: ./python_api
-    container_name: python_api2
-    networks:
-      - backend
-  
-  python_gunicorn_api1:
-    build: ./python_gunicorn_api
-    container_name: python_gunicorn_api1
-    networks:
-      - backend
-
-  python_gunicorn_api2:
-    build: ./python_gunicorn_api
-    container_name: python_gunicorn_api2
-    networks:
-      - backend
-
-  nginx:
+  nginx_test:
     image: nginx:alpine
-    container_name: nginx
+    container_name: nginx_test
     depends_on:
       - go_gin1
       - go_gin2
@@ -124,14 +78,13 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8000:8000"
-      - "8010:8010"
-      - "8020:8020"
       - "9000:9000"
-      - "9010:9010"
-      - "9020:9020"
     networks:
       - backend
 
 networks:
   backend:
     driver: bridge
+
+volumes:
+  db_pg-data:
