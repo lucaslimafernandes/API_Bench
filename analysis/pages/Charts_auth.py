@@ -22,6 +22,7 @@ def page():
     # Bar chart - Failed Requests
 
     st.markdown("## Failed Requests")
+    st.text("Less is better")
     # st.bar_chart(
     #     data=df, 
     #     x="Test (lang + framework)", 
@@ -37,6 +38,7 @@ def page():
     # Bar chart - Requests per Second
 
     st.markdown("## Requests per Second")
+    st.text("More is better")
     st.bar_chart(
         data=df, 
         x="Test (lang + framework)", 
@@ -52,6 +54,7 @@ def page():
     # Bar chart - Time per Request (ms)*
 
     st.markdown("## Time per Request (ms)*")
+    st.text("Less is better")
     st.bar_chart(
         data=df, 
         x="Test (lang + framework)", 
@@ -68,6 +71,7 @@ def page():
     # Bar chart - Transfer Rate (Kbytes/sec)
 
     st.markdown("## Transfer Rate (Kbytes/sec)")
+    st.text("More is better")
     st.bar_chart(
         data=df, 
         x="Test (lang + framework)", 
@@ -82,6 +86,7 @@ def page():
     # Bar chart - Total Time Taken (s)
 
     st.markdown("## Total Time Taken (s)")
+    st.text("Less is better")
     st.bar_chart(
         data=df, 
         x="Test (lang + framework)", 

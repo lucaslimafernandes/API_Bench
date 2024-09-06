@@ -122,66 +122,29 @@ Basic Apache ab commands:
 
 - -c: Number of multiple requests to make at a time
 
-Concurrency: 100
+The tests are performed with this configuration:
 
-- Golang
+- Simple response:
+
+1. -n 100000 -c 100
+
+2. -n 100000 -c 1000
+
+- With authentication:
+
+1. -n 1000 -c 10
+
+2. -n 1000 -c 100
+
+
+Example:
+
+- Golang (show results in the terminal)
 ```bash
-ab -n 100000 -c 100 http://localhost:8080/ >> Go_test.txt
+ab -n 100000 -c 100 http://localhost:8080/ 
 ```
 
-- Golang + Chi
-```bash
-ab -n 100000 -c 100 http://localhost:8090/ >> Go_chi_test.txt
-```
-
-- Golang + Gin + Auth
-```bash
-ab -n 100000 -c 100 http://localhost:8080/ >> Go_test.txt
-```
-
-- Python + Flask
-```bash
-ab -n 100000 -c 100 http://localhost:8100/ >> Python_test.txt
-```
-
-- Python + Flask + Gunicorn
-```bash
-ab -n 100000 -c 100 http://localhost:8110/ >> Python_gunicorn_test.txt
-```
-
-- Python + Flask + Gunicorn + Auth
-```bash
-ab -n 100000 -c 100 http://localhost:8110/ >> Python_gunicorn_test.txt
-```
-
-Concurrency: 1000
-
-- Golang
+- Golang (save results to a file)
 ```bash
 ab -n 100000 -c 1000 http://localhost:8080/ >> Go_test.txt
-```
-
-- Golang + Chi
-```bash
-ab -n 100000 -c 1000 http://localhost:8090/ >> Go_chi_test.txt
-```
-
-- Golang + Gin + Auth
-```bash
-ab -n 100000 -c 1000 http://localhost:8080/ >> Go_test.txt
-```
-
-- Python + Flask
-```bash
-ab -n 100000 -c 1000 http://localhost:8100/ >> Python_test.txt
-```
-
-- Python + Flask + Gunicorn
-```bash
-ab -n 100000 -c 1000 http://localhost:8110/ >> Python_gunicorn_test.txt
-```
-
-- Python + Flask + Gunicorn + Auth
-```bash
-ab -n 100000 -c 1000 http://localhost:8110/ >> Python_gunicorn_test.txt
 ```
