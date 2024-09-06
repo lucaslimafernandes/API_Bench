@@ -149,7 +149,7 @@ ab -n 100000 -c 100 http://localhost:8000/
 ab -n 100000 -c 1000 http://localhost:8000/ >> Go_test.txt
 ```
 
-To run tests:
+**To run tests:**
 
 ```bash
 bash runs_ab.sh
