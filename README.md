@@ -141,10 +141,16 @@ Example:
 
 - Golang (show results in the terminal)
 ```bash
-ab -n 100000 -c 100 http://localhost:8080/ 
+ab -n 100000 -c 100 http://localhost:8000/ 
 ```
 
 - Golang (save results to a file)
 ```bash
-ab -n 100000 -c 1000 http://localhost:8080/ >> Go_test.txt
+ab -n 100000 -c 1000 http://localhost:8000/ >> Go_test.txt
+```
+
+To run tests:
+
+```bash
+bash runs_ab.sh
 ```
