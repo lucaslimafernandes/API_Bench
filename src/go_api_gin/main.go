@@ -8,6 +8,8 @@ import (
 
 func init() {
 
+	gin.SetMode(gin.ReleaseMode)
+
 	models.ConnectDB()
 	models.CreateTables()
 	models.CreateUser()
@@ -15,8 +17,6 @@ func init() {
 }
 
 func main() {
-
-	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
 

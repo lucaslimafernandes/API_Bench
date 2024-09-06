@@ -1,3 +1,4 @@
+import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -6,28 +7,32 @@ import streamlit as st
 
 st.markdown("# Charts")
 
+st.text("These requests perform a SELECT query on PostgreSQL, validate the email and password (hash), and return a JWT token.")
+
 # head
-# Test (lang + framework),Requests,Concurrency Level,Request per Second,Time per Request (ms)*,Failed Requests,Transfer Rate (Kbytes/sec),Total Time Taken (s),Document Lenght (bytes),Connection Total Times (ms),Connect Time (ms)**,Processing Time (ms)**,Waiting Time (ms)**,Percentile 50% (ms),Percentile 80% (ms),Percentile 100%  (ms)
+# Test (lang + framework),Test date (m-d-Y),Postgres,Requests,Concurrency Level,Request per Second,Time per Request (ms)*,Failed Requests,Transfer Rate (Kbytes/sec),Total Time Taken (s),Document Lenght (bytes),Connection Total Times (ms),Connect Time (ms)**,Processing Time (ms)**,Waiting Time (ms)**,Percentile 50% (ms),Percentile 80% (ms),Percentile 100%  (ms)
 
 
 def page():
 
     df = pd.read_csv("tests/comparison.csv")
     df = df[df['Requests'].notna()]
+    df = df[df["Postgres"] == True]
 
     # Bar chart - Failed Requests
 
     st.markdown("## Failed Requests")
-    st.bar_chart(
-        data=df, 
-        x="Test (lang + framework)", 
-        y="Failed Requests", 
-        # y=["Failed Requests","Concurrency Level"], 
-        color="Concurrency Level",
-        # color=["#FF0000", "#0000FF"],
-        stack=False,
-        use_container_width=True
-    )
+    # st.bar_chart(
+    #     data=df, 
+    #     x="Test (lang + framework)", 
+    #     y="Failed Requests", 
+    #     # y=["Failed Requests","Concurrency Level"], 
+    #     color="Concurrency Level",
+    #     # color=["#FF0000", "#0000FF"],
+    #     stack=False,
+    #     use_container_width=True
+    # )
+    st.text("Both have 0 failed requests.")
 
     # Bar chart - Requests per Second
 
@@ -42,6 +47,7 @@ def page():
         stack=False,
         use_container_width=True
     )
+
 
     # Bar chart - Time per Request (ms)*
 
