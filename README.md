@@ -4,6 +4,17 @@ A Simple Benchmark using Go, Python, Nginx, and Docker.
 This test is a study on the Go language and the use of Docker and Nginx. It was conducted in a local environment and serves as an initial demonstration, with further testing needed using different types of responses and monitoring CPU/memory load.
 
 
+## TODO
+
+[ ] GCP Account
+
+[ ] New Docker Compose
+
+[ ] Tests
+
+[ ] Results
+
+
 ## Results
 
 I separated this section with the analysis of previous data in the file: [previous-benchmarks](previous-benchmarks.md)
