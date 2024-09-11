@@ -1,29 +1,75 @@
-version: '3'
-
 services:
-  api1:
+
+  db_pg:
+    image: postgres:14-alpine
+    restart: always
+    volumes:
+      - db_pg-data:/var/lib/postgresql/data
+    shm_size: 128mb
+    container_name: db_pg
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+    networks:
+      - backend
+
+  go_api1:
     build: ./go_api
-    container_name: api1
+    container_name: go_api1
     networks:
       - backend
 
-  api2:
+  go_api2:
     build: ./go_api
-    container_name: api2
+    container_name: go_api2
     networks:
       - backend
 
-  api_chi1:
+  go_api_chi1:
     build: ./go_api_chi
-    container_name: api_chi1
+    container_name: go_api_chi
     networks:
       - backend
 
-  api_chi2:
+  go_api_chi2:
     build: ./go_api_chi
-    container_name: api_chi2
+    container_name: go_api_chi2
     networks:
       - backend
+
+  go_gin1:
+    build: ./go_api_gin
+    container_name: go_gin1
+    depends_on:
+      db_pg:
+        condition: service_healthy
+    environment:
+      DB_URL: user=postgres password=password host=db_pg port=5432 dbname=postgres
+      SECRET: secret-jwt
+    networks:
+      - backend
+
+  go_gin2:
+    build: ./go_api_gin
+    container_name: go_gin2
+    depends_on:
+      db_pg:
+        condition: service_healthy
+    environment:
+      DB_URL: user=postgres password=password host=db_pg port=5432 dbname=postgres
+      SECRET: secret-jwt
+    networks:
+      - backend
+
+
+
 
   python_api1:
     build: ./python_api
@@ -49,18 +95,47 @@ services:
     networks:
       - backend
 
+  flask1:
+    build: ./python_flask
+    container_name: flask1
+    depends_on:
+      db_pg:
+        condition: service_healthy
+    networks:
+      - backend
+
+  flask2:
+    build: ./python_flask
+    container_name: flask2
+    depends_on:
+      db_pg:
+        condition: service_healthy
+    networks:
+      - backend
+
   nginx:
     image: nginx:alpine
     container_name: nginx
+    depends_on:
+      - go_gin1
+      - go_gin2
+      - flask1
+      - flask2
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8080:8080"
-      - "8090:8090"
-      - "8100:8100"
-      - "8110:8110"
+      - "8000:8000"
+      - "8010:8010"
+      - "8020:8020"
+      - "9000:9000"
+      - "9010:9010"
+      - "9020:9020"
     networks:
       - backend
 
 networks:
   backend:
+    driver: bridge
+
+volumes:
+  db_pg-data:

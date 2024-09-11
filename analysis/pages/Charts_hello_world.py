@@ -6,14 +6,17 @@ import streamlit as st
 
 st.markdown("# Charts")
 
+st.text("Response for these requests are: \"Hello, World!\"")
+
 # head
-# Test (lang + framework),Requests,Concurrency Level,Request per Second,Time per Request (ms)*,Failed Requests,Transfer Rate (Kbytes/sec),Total Time Taken (s),Document Lenght (bytes),Connection Total Times (ms),Connect Time (ms)**,Processing Time (ms)**,Waiting Time (ms)**,Percentile 50% (ms),Percentile 80% (ms),Percentile 100%  (ms)
+# Test (lang + framework),Test date (m-d-Y),Postgres,Requests,Concurrency Level,Request per Second,Time per Request (ms)*,Failed Requests,Transfer Rate (Kbytes/sec),Total Time Taken (s),Document Lenght (bytes),Connection Total Times (ms),Connect Time (ms)**,Processing Time (ms)**,Waiting Time (ms)**,Percentile 50% (ms),Percentile 80% (ms),Percentile 100%  (ms)
 
 
 def page():
 
     df = pd.read_csv("tests/comparison.csv")
     df = df[df['Requests'].notna()]
+    df = df[df["Postgres"] == False]
 
     # Bar chart - Failed Requests
 

@@ -1,0 +1,86 @@
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.27.1
+Server Hostname:        localhost
+Server Port:            9020
+
+Document Path:          /auth/login
+Document Length:        112 bytes
+
+Concurrency Level:      10
+Time taken for tests:   24.354 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      262000 bytes
+HTML transferred:       112000 bytes
+Requests per second:    41.06 [#/sec] (mean)
+Time per request:       243.541 [ms] (mean)
+Time per request:       24.354 [ms] (mean, across all concurrent requests)
+Transfer rate:          10.51 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:   110  241  65.8    219     399
+Waiting:      110  241  65.8    219     399
+Total:        110  241  65.8    220     399
+
+Percentage of the requests served within a certain time (ms)
+  50%    220
+  66%    271
+  75%    296
+  80%    315
+  90%    340
+  95%    355
+  98%    374
+  99%    381
+ 100%    399 (longest request)
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.27.1
+Server Hostname:        localhost
+Server Port:            9020
+
+Document Path:          /auth/login
+Document Length:        112 bytes
+
+Concurrency Level:      100
+Time taken for tests:   27.410 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      262000 bytes
+HTML transferred:       112000 bytes
+Requests per second:    36.48 [#/sec] (mean)
+Time per request:       2740.984 [ms] (mean)
+Time per request:       27.410 [ms] (mean, across all concurrent requests)
+Transfer rate:          9.33 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.5      0       2
+Processing:   124 2582 745.8   3033    3467
+Waiting:      121 2582 745.8   3033    3467
+Total:        124 2583 745.4   3033    3467
+
+Percentage of the requests served within a certain time (ms)
+  50%   3033
+  66%   3090
+  75%   3121
+  80%   3137
+  90%   3233
+  95%   3290
+  98%   3355
+  99%   3377
+ 100%   3467 (longest request)
