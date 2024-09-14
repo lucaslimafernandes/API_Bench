@@ -7,7 +7,7 @@ import psycopg2
 DB_CONN = {
     "user": "postgres",
     "password": "password",
-    "host": "db_pg",
+    "host": "localhost",
     "port": 5432,
     "dbname": "postgres",
 }
