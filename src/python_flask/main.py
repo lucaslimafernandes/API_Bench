@@ -1,12 +1,17 @@
+import time
+
 import jwt
 from flask import Flask, jsonify
 
 import models.user
 
-try:
-    models.user.create_user()
-except:
-    pass
+for _ in range(5):
+
+    try:
+        models.user.create_user()
+    except:
+        time.sleep10
+        pass
 
 app = Flask(__name__)
 SECRET_KEY = "secret-jwt"

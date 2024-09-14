@@ -1,4 +1,4 @@
-module github.com/lucaslimafernandes/API_gin
+module github.com/lucaslimafernandes/API_Bench
 
 go 1.22.5
 

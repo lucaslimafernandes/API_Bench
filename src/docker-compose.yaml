@@ -47,8 +47,8 @@ services:
   go_gin1:
     build: ./go_api_gin
     container_name: go_gin1
-    # depends_on:
-      # db_pg:
+    depends_on:
+      - db_pg
         # condition: service_healthy
     environment:
       DB_URL: user=postgres password=password host=db_pg port=5432 dbname=postgres
@@ -59,8 +59,8 @@ services:
   go_gin2:
     build: ./go_api_gin
     container_name: go_gin2
-    # depends_on:
-      # db_pg:
+    depends_on:
+      - db_pg
         # condition: service_healthy
     environment:
       DB_URL: user=postgres password=password host=db_pg port=5432 dbname=postgres
@@ -98,8 +98,9 @@ services:
   flask1:
     build: ./python_flask
     container_name: flask1
-    # depends_on:
-      # db_pg:
+    depends_on:
+      - db_pg
+      - go_gin1
         # condition: service_healthy
     networks:
       - backend
@@ -107,8 +108,9 @@ services:
   flask2:
     build: ./python_flask
     container_name: flask2
-    # depends_on:
-      # db_pg:
+    depends_on:
+      - db_pg
+      - go_gin2
         # condition: service_healthy
     networks:
       - backend

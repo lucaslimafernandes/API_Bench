@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lucaslimafernandes/API_gin/controllers"
-	"github.com/lucaslimafernandes/API_gin/models"
+	"github.com/lucaslimafernandes/API_Bench/controllers"
+	"github.com/lucaslimafernandes/API_Bench/models"
 )
 
 func init() {

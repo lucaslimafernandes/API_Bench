@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/jackc/pgx/v5"
-	"github.com/lucaslimafernandes/API_gin/models"
+	"github.com/lucaslimafernandes/API_Bench/models"
 	"golang.org/x/crypto/bcrypt"
 )
 
