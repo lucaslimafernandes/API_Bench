@@ -1,13 +1,14 @@
 
 """Application Models"""
-from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 import psycopg2
+from werkzeug.security import generate_password_hash, check_password_hash
 
 DB_CONN = {
-    "user": "postgres",
-    "password": "password",
-    "host": "db_pg",
+    "user": os.getenv("PG_U", "postgres"),
+    "password": os.getenv("PG_P","password"),
+    "host": os.getenv("PG_H", "db_pg"),
     "port": 5432,
     "dbname": "postgres",
 }

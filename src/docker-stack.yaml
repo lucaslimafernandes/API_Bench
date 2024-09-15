@@ -1,24 +1,4 @@
 services:
-  db_pg:
-    image: postgres:14-alpine
-    restart: always
-    volumes:
-      - db_pg-data:/var/lib/postgresql/data
-    shm_size: 128mb
-    container_name: db_pg
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: postgres
-    networks:
-      - backend
-
   go_api:
     image: go_api
     build: 
@@ -46,11 +26,8 @@ services:
     build: 
       context: ./go_api_gin
       dockerfile: Dockerfile
-    depends_on:
-      - db_pg
-        # condition: service_healthy
     environment:
-      DB_URL: user=postgres password=password host=db_pg port=5432 dbname=postgres
+      DB_URL: user=${{ PG_U }} password=${{ PG_P }} host=${{ PG_H }} port=5432 dbname=postgres
       SECRET: secret-jwt
     deploy:
       replicas: 2
@@ -85,9 +62,13 @@ services:
     build: 
       context: ./python_flask
       dockerfile: Dockerfile
-    depends_on:
-      - db_pg
-      - go_gin
+    environment:
+      PG_H: ${{ PG_H }}
+      PG_U: ${{ PG_U }}
+      PG_P: ${{ PG_P }}
+    # depends_on:
+      # - db_pg
+      # - go_gin
         # condition: service_healthy
     deploy:
       replicas: 2
@@ -119,5 +100,5 @@ networks:
   backend:
     driver: overlay
 
-volumes:
-  db_pg-data:
+# volumes:
+  # db_pg-data:
