@@ -9,8 +9,9 @@ for _ in range(5):
 
     try:
         models.user.create_user()
+        break
     except:
-        time.sleep10
+        time.sleep(10)
         pass
 
 app = Flask(__name__)

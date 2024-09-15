@@ -1,78 +1,52 @@
 services:
-  go_api:
-    image: go_api
-    build: 
-      context: ./go_api
-      dockerfile: Dockerfile
+  go_net:
+    image: go_net
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
-  go_api_chi:
-    image: go_api_chi
-    build: 
-      context: ./go_api_chi
-      dockerfile: Dockerfile
+  go_chi:
+    image: go_chi
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
   go_gin:
     image: go_gin
-    build: 
-      context: ./go_api_gin
-      dockerfile: Dockerfile
     environment:
       DB_URL: user=${{ PG_U }} password=${{ PG_P }} host=${{ PG_H }} port=5432 dbname=postgres
       SECRET: secret-jwt
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
   python_api:
     image: python_api
     build: 
-      context: ./python_api
-      dockerfile: Dockerfile
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
-  python_gunicorn_api:
-    image: python_gunicorn_api
-    build: 
-      context: ./python_gunicorn_api
-      dockerfile: Dockerfile
+  gunicorn_api:
+    image: gunicorn_api
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
   flask:    
     image: flask
     build: 
-      context: ./python_flask
-      dockerfile: Dockerfile
     environment:
       PG_H: ${{ PG_H }}
       PG_U: ${{ PG_U }}
       PG_P: ${{ PG_P }}
-    # depends_on:
-      # - db_pg
-      # - go_gin
-        # condition: service_healthy
     deploy:
       replicas: 2
-    restart: always
     networks:
       - backend
 
@@ -90,8 +64,12 @@ services:
     deploy:
       replicas: 1
     depends_on:
-      - flask
+      - go_net
+      - go_chi
       - go_gin
+      - python_api
+      - gunicorn_api
+      - flask
     restart: always
     networks:
       - backend
@@ -99,6 +77,3 @@ services:
 networks:
   backend:
     driver: overlay
-
-# volumes:
-  # db_pg-data:
