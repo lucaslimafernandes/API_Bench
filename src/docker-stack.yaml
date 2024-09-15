@@ -16,7 +16,7 @@ services:
   go_gin:
     image: go_gin
     environment:
-      DB_URL: user=${{ PG_U }} password=${{ PG_P }} host=${{ PG_H }} port=5432 dbname=postgres
+      DB_URL: user=${PG_U} password=${PG_P} host=${PG_H} port=5432 dbname=postgres
       SECRET: secret-jwt
     deploy:
       replicas: 2
@@ -25,7 +25,6 @@ services:
 
   python_api:
     image: python_api
-    build: 
     deploy:
       replicas: 2
     networks:
@@ -40,11 +39,10 @@ services:
 
   flask:    
     image: flask
-    build: 
     environment:
-      PG_H: ${{ PG_H }}
-      PG_U: ${{ PG_U }}
-      PG_P: ${{ PG_P }}
+      PG_H: ${PG_H}
+      PG_U: ${PG_U}
+      PG_P: ${PG_P}
     deploy:
       replicas: 2
     networks:
