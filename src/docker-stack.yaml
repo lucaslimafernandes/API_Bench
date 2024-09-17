@@ -2,49 +2,49 @@ services:
   go_net:
     image: go_net
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
   go_chi:
     image: go_chi
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
   go_gin:
     image: go_gin
     environment:
-      DB_URL: user=${PG_U} password=${PG_P} host=${PG_H} port=5432 dbname=postgres
+      DB_URL: user=postgres password=password host=10.128.0.16 port=5432 dbname=postgres
       SECRET: secret-jwt
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
   python_api:
     image: python_api
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
   gunicorn_api:
     image: gunicorn_api
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
   flask:    
     image: flask
     environment:
-      PG_H: ${PG_H}
-      PG_U: ${PG_U}
-      PG_P: ${PG_P}
+      PG_H: 10.128.0.16
+      PG_U: postgres
+      PG_P: password
     deploy:
-      replicas: 2
+      replicas: 4
     networks:
       - backend
 
